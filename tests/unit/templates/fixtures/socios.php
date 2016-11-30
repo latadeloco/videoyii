@@ -1,6 +1,6 @@
 <?php
 
-// Socio.php file under the template path (by default @tests/unit/templates/fixtures)
+// socios.php file under the template path (by default @tests/unit/templates/fixtures)
 /**
  * @var $faker \Faker\Generator
  * @var $index integer
