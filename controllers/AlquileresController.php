@@ -18,27 +18,8 @@ class AlquileresController extends \yii\web\Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
-                // form inputs are valid, do something here
-                $socio_id = Socio::find()
-                    ->select('id')
-                    ->where(['numero' => $model->numero])
-                    ->scalar();
-                $pelicula = Pelicula::find()
-                    ->select('id, precio')
-                    ->where(['codigo' => $model->codigo])
-                    ->one();
-                $pelicula_id = $pelicula->id;
-                $precio_alq = $pelicula->precio;
-                $alquiler = new Alquiler([
-                    'socio_id' => $socio_id,
-                    'pelicula_id' => $pelicula_id,
-                    'precio_alq' => $precio_alq,
-                ]);
-                if ($pelicula->estaAlquilada) {
-                    Yii::$app->session->setFlash('fracaso', 'La película ya está alquilada.');
-                } else {
-                    $alquiler->save();
-                    Yii::$app->session->setFlash('exito', 'Alquiler realizado correctamente.');
+                $alquiler = new Alquiler;
+                if ($alquiler->alquilar($model->numero, $model->codigo)) {
                     return $this->redirect(Url::to(['alquileres/alquilar']));
                 }
             }
