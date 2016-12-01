@@ -11,6 +11,9 @@ $config = [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
     'components' => [
+        'formatter' => [
+            'thousandSeparator' => ' ',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
