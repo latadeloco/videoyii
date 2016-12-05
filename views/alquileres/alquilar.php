@@ -5,18 +5,12 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AlquilerForm */
-/* @var $socios array */
-/* @var $peliculas array */
 /* @var $form ActiveForm */
 ?>
 <div class="alquileres-alquilar">
     <?php $form = ActiveForm::begin(); ?>
-        <?= $form->field($model, 'numero')->dropDownList($socios, [
-                'prompt' => 'Seleccione un socio...',
-            ]) ?>
-        <?= $form->field($model, 'codigo')->dropDownList($peliculas, [
-                'prompt' => 'Seleccione una película...',
-            ]) ?>
+        <?= $form->field($model, 'numero') ?>
+        <?= $form->field($model, 'codigo') ?>
         <div class="form-group">
             <?= Html::submitButton('Alquilar', ['class' => 'btn btn-primary']) ?>
         </div>
