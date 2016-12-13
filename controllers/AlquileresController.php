@@ -104,6 +104,7 @@ class AlquileresController extends \yii\web\Controller
         if ($alquiler !== null) {
             $alquiler->devuelto = new \yii\db\Expression('current_timestamp');
             $alquiler->save();
+            Yii::$app->session->setFlash('exito', 'Película devuelta correctamente.');
             $url = ['alquileres/gestionar'];
             if ($numero !== null) {
                 $url['numero'] = $numero;

@@ -29,9 +29,9 @@ use yii\widgets\ActiveForm;
         <tbody>
             <?php foreach ($alquileres as $alquiler) { ?>
                 <tr>
-                    <td><?= $alquiler->pelicula->codigo ?></td>
-                    <td><?= $alquiler->pelicula->titulo ?></td>
-                    <td><?= Yii::$app->formatter->asDatetime($alquiler->alquilado) ?></td>
+                    <td><?= Html::encode($alquiler->pelicula->codigo) ?></td>
+                    <td><?= Html::encode($alquiler->pelicula->titulo) ?></td>
+                    <td><?= Html::encode(Yii::$app->formatter->asDatetime($alquiler->alquilado)) ?></td>
                     <td>
                         <?= Html::a('Devolver', [
                             'alquileres/delete',
@@ -40,7 +40,7 @@ use yii\widgets\ActiveForm;
                         ], [
                             'class' => 'btn btn-xs btn-danger',
                             'data' => [
-                                'confirm' => 'Are you sure you want to delete this item?',
+                                'confirm' => '¿Desea devolver esta película?',
                                 'method' => 'post',
                             ],
                         ]) ?>

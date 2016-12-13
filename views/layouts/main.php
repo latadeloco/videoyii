@@ -6,10 +6,18 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\bootstrap\Alert;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+
+$js = <<<JS
+    $(".alert").fadeTo(2000, 500).slideUp(500, function() {
+        $(".alert").slideUp(500);
+    });
+JS;
+$this->registerJs($js);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -61,22 +69,20 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?php if (Yii::$app->session->hasFlash('exito')) {
-            ?>
-            <div class="alert alert-success" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <?= Yii::$app->session->getFlash('exito') ?>
-            </div>
-        <?php
-
+            echo Alert::widget([
+                'options' => [
+                    'class' => 'alert-success',
+                ],
+                'body' => Yii::$app->session->getFlash('exito'),
+            ]);
         } ?>
         <?php if (Yii::$app->session->hasFlash('fracaso')) {
-            ?>
-            <div class="alert alert-danger" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <?= Yii::$app->session->getFlash('fracaso') ?>
-            </div>
-        <?php
-
+            echo Alert::widget([
+                'options' => [
+                    'class' => 'alert-danger',
+                ],
+                'body' => Yii::$app->session->getFlash('fracaso'),
+            ]);
         } ?>
         <?= $content ?>
     </div>

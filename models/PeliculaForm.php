@@ -16,6 +16,12 @@ class PeliculaForm extends \yii\base\Model
                 'targetClass' => Pelicula::className(),
                 'targetAttribute' => ['codigo' => 'codigo'],
             ],
+            ['codigo', function ($attribute, $params) {
+                $pelicula = Pelicula::findOne(['codigo' => $this->$attribute]);
+                if ($pelicula !== null && $pelicula->estaAlquilada) {
+                    $this->addError($attribute, 'La película ya está alquilada.');
+                }
+            }],
         ];
     }
 
