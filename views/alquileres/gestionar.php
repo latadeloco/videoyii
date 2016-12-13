@@ -6,6 +6,9 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\AlquilerForm */
 /* @var $form ActiveForm */
+
+$this->title = 'Alquileres';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="alquileres-gestionar">
     <?php $form = ActiveForm::begin([
